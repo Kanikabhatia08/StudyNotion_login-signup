@@ -5,14 +5,14 @@ import toast from 'react-hot-toast'
 
  const Navbar = ({isLoggedIn, setIsLoggedIn}) => {
   return (
-    <div className='flex justify-evenly'>
+    <div className='flex mt-6 justify-between mx-auto items-center w-11/12 max-w-[1160px]'>
 
         <Link to="/">
             <img src={logo} alt='logo' width={160} height={32} loading="lazy"/>
         </Link>
 
         <nav>
-            <ul className='flex gap-3'>
+            <ul className='flex gap-x-6 text-white  '>
                 <li>
                     <Link to="/">Home</Link>
                 </li>
@@ -26,18 +26,18 @@ import toast from 'react-hot-toast'
         </nav>
 
     {/* Buttonss */}
-        <div className='flex gap-3'>
+        <div className='flex items-center gap-x-4 text-slate-300'>
 
             {!isLoggedIn &&
                 <Link to="/login">
-                    <button>
+                    <button className='bg-richblack-800 py-[8px] px-[12px] rounded-lg border border-richblack-700'>
                         Log In
                     </button>
                 </Link>
             }
             { !isLoggedIn &&
                 <Link to="/signup">
-                <button>
+                <button className='bg-richblack-800 py-[8px] px-[12px] rounded-lg border border-richblack-700'>
                     Sign Up
                 </button>
                 </Link>
@@ -46,7 +46,8 @@ import toast from 'react-hot-toast'
 
             { isLoggedIn &&
                 <Link to="/">
-                <button onClick={() => {
+                <button className='bg-richblack-800 py-[8px] px-[12px] rounded-lg border border-richblack-700'
+                onClick={() => {
                     setIsLoggedIn(false);
                     toast.success("Logged Out")
                 }}>
@@ -57,7 +58,7 @@ import toast from 'react-hot-toast'
 
             { isLoggedIn &&
                 <Link to="/dashoard">
-                    <button>
+                    <button className='bg-richblack-800 py-[8px] px-[12px] rounded-lg border border-richblack-700'>
                         Dashboard
                     </button>
                 </Link>

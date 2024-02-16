@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import { AiOutlineEye,AiOutlineEyeInvisible } from "react-icons/ai";
+import toast from 'react-hot-toast';
+import { useNavigate } from 'react-router-dom';
 
-
-export default function SignupForm() {
+export default function SignupForm({setIsLoggedIn}) {
     const [formData, setFormData] = useState({
         firstName: "",
         lastName:"",
@@ -23,6 +24,21 @@ export default function SignupForm() {
         ))
 
     }
+    const navigate = useNavigate()
+
+    function submitHandler(event){
+        event.preventDefault();
+        if(formData.password != formData.confirmPassword){
+            toast.error("Passwords do not Match!")
+            return;
+        }
+        if(formData.password.length < 6 && formData.confirmPassword.length < 6 ){
+            toast.error("Password should contain 6 digits")
+        }
+        setIsLoggedIn(true)
+        toast.success("Account Created")
+        navigate("/dashboard")
+    }
 
   return (
     <div>
@@ -36,9 +52,13 @@ export default function SignupForm() {
                 Instructor
             </button>
         </div>
-        <form>
+        <form onSubmit={submitHandler}>
+            <div className='flex gap-3 justify-center'>
+
             <label>
-                <p>First Name<sup>*</sup></p>
+                <p
+                className='w-full text-sm text-richblack-5 mb-1 '
+                >First Name<sup>*</sup></p>
                 <input 
                     required
                     type="text"
@@ -46,11 +66,15 @@ export default function SignupForm() {
                     onChange={changeHandler}
                     value={formData.firstName}
                     placeholder='Enter First Name'
+                    className='bg-richblack-800 rounded-lg text-richblack-5 w-full p-3'
+
                 />
             </label>
 
             <label>
-                <p>Last Name<sup>*</sup></p>
+                <p
+                className='w-full text-sm text-richblack-5 mb-1 '
+                >Last Name<sup>*</sup></p>
                 <input 
                     required
                     type="text"
@@ -58,11 +82,17 @@ export default function SignupForm() {
                     onChange={changeHandler}
                     value={formData.lastName}
                     placeholder='Enter Last Name'
+                    className='bg-richblack-800 rounded-lg text-richblack-5 w-full p-3'
+
                 />
             </label>
 
+            </div>
+            
+
             <label>
-                <p>
+                <p 
+                className='text-sm text-richblack-5 my-2 mt-5'>
                     Email address <sup>*</sup>
                 </p>
                 <input
@@ -71,11 +101,15 @@ export default function SignupForm() {
                     value={formData.email}
                     onChange={changeHandler}
                     placeholder='Enter Email Id'
+                    className='bg-richblack-800 rounded-lg text-richblack-5 w-full p-3'
+
                 />
             </label>
 
-            <label>
-                <p>
+            <div className='flex justify-between gap-3'>
+
+            <label className='relative'>
+                <p className='w-full text-sm text-richblack-5 my-2 mt-5'>
                     Password <sup>*</sup>
                 </p>
                 <input
@@ -84,19 +118,23 @@ export default function SignupForm() {
                     value={formData.password}
                     onChange={changeHandler}
                     placeholder='Enter Password'
+                    className='bg-richblack-800 rounded-lg text-richblack-5 w-full p-3'
+
                 />
-                <span onClick={()=>{setShowPassword((prev) => !prev)}}>
+                <span 
+                className='absolute right-3 top-[38px] cursor-pointer'
+                onClick={()=>{setShowPassword((prev) => !prev)}}>
                     {
                         showPassword ? 
-                        (<AiOutlineEye />) : 
-                        (<AiOutlineEyeInvisible/>)
+                        (<AiOutlineEye fontSize={24} fill="#AFB2BF"/>) : 
+                        (<AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF"/>)
                     }
                 </span>
             </label>
 
-            <label>
-                <p>
-                    confirm Password <sup>*</sup>
+            <label className='relative'>
+                <p className='w-full text-sm text-richblack-5 my-2 mt-5 '>
+                    Confirm Password <sup>*</sup>
                 </p>
                 <input
                     required name='confirmPassword'
@@ -104,19 +142,27 @@ export default function SignupForm() {
                     value={formData.confirmPassword}
                     onChange={changeHandler}
                     placeholder='Enter Password'
+                    className='bg-richblack-800 rounded-lg text-richblack-5 w-full p-3'
+
                 />
 
-                <span onClick={()=>{setShowPassword((prev) => !prev)}}>
+                <span 
+                className='absolute right-3 top-[38px] cursor-pointer'
+                onClick={()=>{setShowPassword((prev) => !prev)}}>
                     {
                         showPassword ? 
-                        (<AiOutlineEye />) : 
-                        (<AiOutlineEyeInvisible/>)
+                        (<AiOutlineEye fontSize={24} fill="#AFB2BF"/>) : 
+                        (<AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF"/>)
                     }
                 </span>
 
             </label>
 
-            <button>
+
+            </div>
+
+            
+            <button lassName='w-full bg-yellow-50 font-medium rounded-lg px-3 py-2 mt-6 text-richblack-700'>
                 Create Account
             </button>
 
