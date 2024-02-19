@@ -14,6 +14,9 @@ export default function SignupForm({setIsLoggedIn}) {
     })
 
     const [showPassword, setShowPassword] = useState(false);
+    const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+
+    const [accountType, setAccountType] = useState("Student");
 
     function changeHandler(event){
         setFormData( (prevData) => (
@@ -37,6 +40,16 @@ export default function SignupForm({setIsLoggedIn}) {
         }
         setIsLoggedIn(true)
         toast.success("Account Created")
+        const accountData ={
+            ...formData
+        };
+
+        const finalData = {
+            ...accountData,
+            accountType
+        }
+
+        console.log(finalData, "finalllllllll")
         navigate("/dashboard")
     }
 
@@ -44,11 +57,18 @@ export default function SignupForm({setIsLoggedIn}) {
     <div>
         {/* student instructor tab */}
 
-        <div>
-            <button>
+        <div 
+            className='flex max-w-max bg-richblack-800 p-2 gap-x-2 my-6 rounded-full'>
+            <button onClick={() => setAccountType("Student")}
+                className={`${accountType === "Student" ? 
+                "bg-richblack-900 text-richblack-5 rounded-full py-2 px-5 transition-all duration-200" : 
+                "bg-transparent text-richblack-200"}`}>
                 Student
             </button>
-            <button>
+            <button onClick={() => setAccountType("Instructor")}
+                className={`${accountType === "Instructor" ? 
+                    "bg-richblack-900 text-richblack-5 rounded-full py-2 px-5 transition-all duration-200" : 
+                    "bg-transparent text-richblack-200"}`}>
                 Instructor
             </button>
         </div>
@@ -122,7 +142,7 @@ export default function SignupForm({setIsLoggedIn}) {
 
                 />
                 <span 
-                className='absolute right-3 top-[38px] cursor-pointer'
+                className='absolute right-3 top-[60px] cursor-pointer'
                 onClick={()=>{setShowPassword((prev) => !prev)}}>
                     {
                         showPassword ? 
@@ -138,7 +158,7 @@ export default function SignupForm({setIsLoggedIn}) {
                 </p>
                 <input
                     required name='confirmPassword'
-                    type={showPassword ? ("text") : ("password")}
+                    type={showConfirmPassword ? ("text") : ("password")}
                     value={formData.confirmPassword}
                     onChange={changeHandler}
                     placeholder='Enter Password'
@@ -147,10 +167,10 @@ export default function SignupForm({setIsLoggedIn}) {
                 />
 
                 <span 
-                className='absolute right-3 top-[38px] cursor-pointer'
-                onClick={()=>{setShowPassword((prev) => !prev)}}>
+                className='absolute right-3 top-[60px] cursor-pointer'
+                onClick={()=>{setShowConfirmPassword((prev) => !prev)}}>
                     {
-                        showPassword ? 
+                        showConfirmPassword ? 
                         (<AiOutlineEye fontSize={24} fill="#AFB2BF"/>) : 
                         (<AiOutlineEyeInvisible fontSize={24} fill="#AFB2BF"/>)
                     }
@@ -162,7 +182,7 @@ export default function SignupForm({setIsLoggedIn}) {
             </div>
 
             
-            <button lassName='w-full bg-yellow-50 font-medium rounded-lg px-3 py-2 mt-6 text-richblack-700'>
+            <button className='w-full bg-yellow-50 font-medium rounded-lg px-3 py-2 mt-6 text-richblack-700'>
                 Create Account
             </button>
 

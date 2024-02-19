@@ -57,7 +57,7 @@ import toast from 'react-hot-toast'
             }
 
             { isLoggedIn &&
-                <Link to="/dashoard">
+                <Link to="/dashboard">
                     <button className='bg-richblack-800 py-[8px] px-[12px] rounded-lg border border-richblack-700'>
                         Dashboard
                     </button>
