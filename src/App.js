@@ -16,18 +16,15 @@ function App() {
     <Navbar isLoggedIn={isLoggedIn} setIsLoggedIn={setIsLoggedIn} />
 
     <Routes>
-      <Route path= "/" element={<Home setIsLoggedIn={setIsLoggedIn}/>} />
+      <Route path= "/" element={<Home/>} />
       <Route path= "/login" element={<Login setIsLoggedIn={setIsLoggedIn} />}/>
       <Route path= "/signup" element={<Signup setIsLoggedIn={setIsLoggedIn} />}/>
       <Route path="/dashboard" element ={
           <PrivateRoute isLoggedIn={isLoggedIn}>
             <Dashboard/>
           </PrivateRoute>
-          
+          //if we type dashboard on the adress bar it does not load as react is a SPA and it re renders
       }/>
-      
-
-
     </Routes>
   </div>
   );

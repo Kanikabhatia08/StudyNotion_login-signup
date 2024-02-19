@@ -13,9 +13,9 @@ export default function SignupForm({setIsLoggedIn}) {
 
     })
 
+    const navigate = useNavigate()
     const [showPassword, setShowPassword] = useState(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState(false);
-
     const [accountType, setAccountType] = useState("Student");
 
     function changeHandler(event){
@@ -27,7 +27,6 @@ export default function SignupForm({setIsLoggedIn}) {
         ))
 
     }
-    const navigate = useNavigate()
 
     function submitHandler(event){
         event.preventDefault();

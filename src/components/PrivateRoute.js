@@ -5,6 +5,7 @@ export default function PrivateRoute({isLoggedIn, children}) { //children -> Das
     
     const navigate = useNavigate;
     if(isLoggedIn){
+        console.log(children)
         return children;
     }
     else{
