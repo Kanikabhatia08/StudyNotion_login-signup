@@ -53,7 +53,7 @@ export default function SignupForm({setIsLoggedIn}) {
     }
 
   return (
-    <div>
+    <div >
         {/* student instructor tab */}
 
         <div 

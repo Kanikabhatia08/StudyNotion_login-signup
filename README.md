@@ -9,3 +9,6 @@
   - Use of Template
   - Multi-state handling
   - Multiple components which appear to be as different pages
+
+# Snapshot of Login
+![login](login.png)

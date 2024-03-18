@@ -6,7 +6,7 @@ import frameImage from "../assets/frame.png"
 
 const Template = ({title, desc1, desc2, image, formType, setIsLoggedIn}) => {
     return (
-        <div className='mt-10 flex w-11/12 max-w-[1160px] justify-between py-12 mx-auto  gap-y-8'>
+        <div className='mt-10 min-h-full flex w-11/12 max-w-[1160px] justify-between py-12 mx-auto  gap-y-8'>
             <div className='w-11/12 max-w-[450px]'>
                 <h1 
                     className='text-richblack-5 font-semibold text-3xl'> 
